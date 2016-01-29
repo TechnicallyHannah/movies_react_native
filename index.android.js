@@ -82,7 +82,7 @@ class movies_react_native extends Component {
     }
 
     return (
-    <ListView
+      <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
         style={styles.listView}
@@ -104,6 +104,7 @@ class movies_react_native extends Component {
 
   renderMovie(movie) {
     return (
+      // Touchable Highlight should be replaced with Android Specific TouchableNativeFeedback for android animations
       <TouchableHighlight onPress={() => this.setState({ toggled: !this.state.toggled })}>
       <View style={styles.container}>
         <Image
