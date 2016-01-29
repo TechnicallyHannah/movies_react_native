@@ -37,8 +37,6 @@ var MOCKED_MOVIES_DATA = [
       vote_count: 7028
     }
   ];
-
-
 var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
 var PAGE_SIZE = 25;
@@ -55,6 +53,7 @@ class movies_react_native extends Component {
       }),
       loaded: false,
     };
+    this.OnClick = this.OnClick.bind(this);
   }
 
   componentDidMount() {
@@ -73,8 +72,8 @@ class movies_react_native extends Component {
       .done();
   }
 
-  clickMe(){
-    alert("Hi");
+  OnClick() {
+    alert('Hi!');
   }
     render() {
     if (!this.state.loaded) {
@@ -86,9 +85,7 @@ class movies_react_native extends Component {
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
         style={styles.listView}
-        onPress={this.clickMe.bind(this)}
           />
-
     );
   }
 
@@ -105,7 +102,6 @@ class movies_react_native extends Component {
   renderMovie(movie) {
     return (
       // Touchable Highlight should be replaced with Android Specific TouchableNativeFeedback for android animations
-      <TouchableHighlight onPress={() => this.setState({ toggled: !this.state.toggled })}>
       <View style={styles.container}>
         <Image
           source={{uri: movie.posters.thumbnail}}
@@ -116,7 +112,6 @@ class movies_react_native extends Component {
           <Text style={styles.year}>{movie.year}</Text>
         </View>
       </View>
-      </TouchableHighlight>
     );
   }
 }
