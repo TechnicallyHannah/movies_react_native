@@ -53,7 +53,6 @@ class movies_react_native extends Component {
       }),
       loaded: false,
     };
-    this.OnClick = this.OnClick.bind(this);
   }
 
   componentDidMount() {
@@ -70,10 +69,6 @@ class movies_react_native extends Component {
         });
       })
       .done();
-  }
-
-  OnClick() {
-    alert('Hi!');
   }
     render() {
     if (!this.state.loaded) {
