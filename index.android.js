@@ -10,7 +10,8 @@ import React, {
   Text,
   View,
   Image,
-  ListView
+  ListView,
+  TouchableHighlight
 } from 'react-native';
 
 var MOCKED_MOVIES_DATA = [
@@ -71,17 +72,23 @@ class movies_react_native extends Component {
       })
       .done();
   }
+
+  clickMe(){
+    alert("Hi");
+  }
     render() {
     if (!this.state.loaded) {
       return this.renderLoadingView();
     }
 
     return (
-      <ListView
+    <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMovie}
         style={styles.listView}
-      />
+        onPress={this.clickMe.bind(this)}
+          />
+
     );
   }
 
@@ -97,6 +104,7 @@ class movies_react_native extends Component {
 
   renderMovie(movie) {
     return (
+      <TouchableHighlight onPress={() => this.setState({ toggled: !this.state.toggled })}>
       <View style={styles.container}>
         <Image
           source={{uri: movie.posters.thumbnail}}
@@ -107,6 +115,7 @@ class movies_react_native extends Component {
           <Text style={styles.year}>{movie.year}</Text>
         </View>
       </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -138,6 +147,11 @@ class movies_react_native extends Component {
       paddingTop: 20,
       backgroundColor: '#F5FCFF',
     },
+    separator: {
+   height: 1,
+   backgroundColor: '#CCCCCC',
+ },
+
   });
 
 AppRegistry.registerComponent('movies_react_native', () => movies_react_native);
